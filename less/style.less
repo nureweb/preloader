@@ -1,0 +1,93 @@
+@color: #fff;
+@bg: #222;
+* {
+    margin: 0; padding: 0;
+}
+
+.content {
+    padding: 25px;
+}
+.loader-wrap {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    color: @color;
+    z-index: 5;
+}
+.loader {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    z-index: 6;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 50%;
+    margin-top: -75px;
+    border: 3px solid transparent;
+    border-top-color: blueviolet;
+    border-radius: 50%;
+    animation: spin 3s linear infinite;
+
+    &:after {
+        content: "";
+        border: 3px solid transparent;
+        border-top-color: cornflowerblue;
+        border-radius: 50%;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        animation: spin 1.5s linear infinite;
+    }
+
+    &:before {
+        content: "";
+        border: 3px solid transparent;
+        border-top-color: darkorange;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        animation: spin 3s linear infinite;
+    }
+}
+
+.loader-section {
+    position: fixed;
+    width: 51%;
+    height: 100%;
+    top: 0;
+    z-index: 4;
+    background: @bg;
+    transform: translateX(0);
+    transition: all .5s linear;
+}
+
+.loader-section.section-left {
+    left: 0;
+}
+.loader-section.section-right {
+    right: 0;
+}
+.loaded .loader {
+    opacity: 0;
+}
+.loaded .loader-wrap {
+    visibility: hidden;
+    transition: all 0.2s linear;
+}
+.loaded .loader-section.section-left {
+    transform: translateX(-100%);
+}
+.loaded .loader-section.section-right {
+    transform: translateX(100%);
+}
+
+@keyframes spin {
+    from { transform: rotate(0)}
+    to { transform: rotate(360deg)}
+}
